@@ -49,11 +49,7 @@ const FloatingButton = () => {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
+    <View className="flex-1">
       <Animated.View style={[styles.circle, { bottom: icon_1 }]}>
         <TouchableOpacity>
           <Ionicons name="play" size={20} color={"#FFFF"} />
