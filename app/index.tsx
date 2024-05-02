@@ -46,7 +46,7 @@ const Page = () => {
   return (
     <View
       className="flex-1 justify-between"
-      style={[{ backgroundColor: theme.colors.background, marginTop: top*5 }]}
+      style={[{  marginTop: top * 5 }]}
     >
       {/* <Canvas style={{ flex: 1 }}>
         <Rect x={0} y={0} width={width} height={height}>
