@@ -42,22 +42,25 @@ const GameBoard = () => {
 
   const handleClick = (i: any) => {
     const tempHistory = history.slice(0, stepNumber + 1);
-    const currentStep = tempHistory[tempHistory.length - 1];
-    const tempSquares = [...currentStep.squares];
 
-    if (calculateWinner(tempSquares) || tempSquares[i]) {
+    const latestStep = tempHistory[tempHistory.length - 1];
+
+    const currentBoardState = [...latestStep.squares];
+
+    // check if the game should continue or if the clicked square is already filled
+    if (calculateWinner(currentBoardState) || currentBoardState[i]) {
       return;
     }
 
-    tempSquares[i] = "X";
+    currentBoardState[i] = "X";
 
-    if (calculateWinner(tempSquares)) {
-      setHistory(tempHistory.concat([{ squares: tempSquares }]));
+    if (calculateWinner(currentBoardState)) {
+      setHistory(tempHistory.concat([{ squares: currentBoardState }]));
       setStepNumber(tempHistory.length);
       return; // If user wins, no need to proceed to computer's move
     }
 
-    const emptySquares = tempSquares.reduce((acc, square, index) => {
+    const emptySquares = currentBoardState.reduce((acc, square, index) => {
       if (square === null) {
         acc.push(index);
       }
@@ -66,12 +69,12 @@ const GameBoard = () => {
 
     const randomIndex = Math.floor(Math.random() * emptySquares.length);
     const computerMoveIndex = emptySquares[randomIndex];
-    tempSquares[computerMoveIndex] = "O";
+    currentBoardState[computerMoveIndex] = "O";
 
-    setHistory(tempHistory.concat([{ squares: tempSquares }]));
+    setHistory(tempHistory.concat([{ squares: currentBoardState }]));
     setStepNumber(tempHistory.length);
 
-    if (calculateWinner(tempSquares) || tempHistory.length === 8) {
+    if (calculateWinner(currentBoardState) || tempHistory.length === 8) {
       // Check for winner or if it's the last move
       // If there's a winner or all squares are filled, stop the game
       return;
