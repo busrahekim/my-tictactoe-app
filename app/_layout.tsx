@@ -68,7 +68,36 @@ const RootLayout = () => {
           headerTransparent: true,
         }}
       />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+       <Stack.Screen
+        name="help"
+        options={{
+          title: "HELP",
+          headerBackTitle: "",
+          headerShadowVisible: false,
+          headerStyle: { backgroundColor: Colors.background },
+          headerLeft: () => (
+            <TouchableOpacity onPress={router.back}>
+              <Ionicons name="arrow-back" size={30} color={Colors.dark} />
+            </TouchableOpacity>
+          ),
+          headerTransparent: true,
+        }}
+      />
+      <Stack.Screen
+        name="settings"
+        options={{
+          title: "Settings",
+          headerBackTitle: "",
+          headerShadowVisible: false,
+          headerStyle: { backgroundColor: Colors.background },
+          headerLeft: () => (
+            <TouchableOpacity onPress={router.back}>
+              <Ionicons name="arrow-back" size={30} color={Colors.dark} />
+            </TouchableOpacity>
+          ),
+          headerTransparent: true,
+        }}
+      />
     </Stack>
   );
 };

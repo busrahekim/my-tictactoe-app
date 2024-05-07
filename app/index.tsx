@@ -44,10 +44,7 @@ const Page = () => {
   }, []);
 
   return (
-    <View
-      className="flex-1 justify-between"
-      style={[{  marginTop: top * 5 }]}
-    >
+    <View className="flex-1 justify-between" style={[{ marginTop: top * 5 }]}>
       {/* <Canvas style={{ flex: 1 }}>
         <Rect x={0} y={0} width={width} height={height}>
           <LinearGradient
@@ -80,7 +77,7 @@ const Page = () => {
             </TouchableOpacity>
           </Link>
           <Link
-            href={"/"}
+            href={"/help"}
             className="rounded-full p-2 h-12 justify-center items-center flex-1"
             style={{ backgroundColor: Colors.primary }}
             asChild
@@ -92,7 +89,7 @@ const Page = () => {
         </View>
         <View className="flex flex-row justify-center mt-2 px-5">
           <Link
-            href={"/"}
+            href={"/settings"}
             className="rounded-full p-2 h-12 justify-center items-center flex-1"
             style={{ backgroundColor: Colors.primary }}
             asChild
