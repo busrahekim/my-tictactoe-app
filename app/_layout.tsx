@@ -15,6 +15,10 @@ import { AppThemeContext } from "@/context/appThemeContext";
 import Colors from "@/constants/Colors";
 import { TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import CharacterProvider from "@/providers/CharacterProvider";
+
+const queryClient = new QueryClient();
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -68,7 +72,7 @@ const RootLayout = () => {
           headerTransparent: true,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="help"
         options={{
           title: "HELP",
@@ -105,7 +109,11 @@ const RootLayout = () => {
 const RootLayoutNav = () => {
   return (
     <AppThemeContext.Provider value={LightTheme}>
-      <RootLayout />
+      <QueryClientProvider client={queryClient}>
+        <CharacterProvider>
+          <RootLayout />
+        </CharacterProvider>
+      </QueryClientProvider>
     </AppThemeContext.Provider>
   );
 };
