@@ -1,5 +1,7 @@
 import React, { createContext } from "react";
 import { Character } from "@/types/CharacterType";
+import { useContext } from "react";
+
 
 const CharacterContext = createContext<{
   characters: Character[];
@@ -24,5 +26,10 @@ const CharacterContext = createContext<{
   setLoading: () => {},
   setError: () => {},
 });
+
+export const useCharacterContext = () => {
+  return useContext(CharacterContext);
+};
+
 
 export default CharacterContext;

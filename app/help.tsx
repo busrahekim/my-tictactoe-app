@@ -1,11 +1,11 @@
 import { View, Text, SafeAreaView, ScrollView } from "react-native";
 import { useHeaderHeight } from "@react-navigation/elements";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { fetchCharacters, searchCharacters } from "./api/api";
 import SearchBar from "@/components/SearchBar";
 import MultiSelectList from "@/components/MultiSelectList";
-import { useCharacterContext } from "@/hooks/useCharacterContext";
 import { Character } from "@/types/CharacterType";
+import { useCharacterContext } from "@/context/characterContext";
 
 const Page = () => {
   const headerHeight = useHeaderHeight();
@@ -75,22 +75,21 @@ const Page = () => {
 
       setSelected(selectedNames);
 
-
       return updatedCharacters;
     });
   };
 
   const handleRemove = (valueToRemove: string) => {
-    const updatedSelected = selected.filter((s) => s !== valueToRemove);
+    const updatedSelected = selected.filter((item) => item !== valueToRemove);
+
     setSelected(updatedSelected);
 
     setCharacters((prevCharacters) =>
-      prevCharacters.map((character) => {
-        if (character.name === valueToRemove) {
-          return { ...character, selected: false };
-        }
-        return character;
-      })
+      prevCharacters.map((character) =>
+        character.name === valueToRemove
+          ? { ...character, selected: false }
+          : character
+      )
     );
   };
 
@@ -104,6 +103,7 @@ const Page = () => {
       <ScrollView className="rounded-xl border border-primary h-72">
         {loading && (
           <View className="border-b border-b-primary p-2 gap-2 items-center">
+            {/* ActivityIndicator */}
             <Text className="text-textColor">Loading...</Text>
           </View>
         )}
